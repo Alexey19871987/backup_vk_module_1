@@ -41,7 +41,15 @@ class YandexVkontakte:
             finish_list.append(dict_photo)
         return finish_list
 
+    def __create_folder(self):
+        url = 'https://cloud-api.yandex.net/v1/disk/resources'
+        headers = {'Authorization': self.access_token_ya,
+                   'Content-Type': 'application/json'}
+        params = {'path': 'vk'}
+        requests.put(url=url, headers=headers, params=params)
+
     def upload_photo_yandex(self):
+        self.__create_folder()
         url = 'https://cloud-api.yandex.net/v1/disk/resources/upload'
         headers = {'Authorization': self.access_token_ya,
                    'Content-Type': 'application/json'}
